@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s ease;
+  min-height: 44px;
+  max-height: 150px;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+}
+
+.input:disabled {
+  background-color: var(--color-bg);
+  cursor: not-allowed;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sendButton:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.sendButton:disabled {
+  background-color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.sendingIcon {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
