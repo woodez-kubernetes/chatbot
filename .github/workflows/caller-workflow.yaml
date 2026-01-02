@@ -4,6 +4,11 @@ on:
     branches:
       - release-dev
 
+    paths-ignore:
+      - 'helm/chatbot/values.yaml'
+
+    
+
 jobs:
   # 1. First reusable workflow - Build and push Docker image
   build-code:
