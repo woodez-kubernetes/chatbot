@@ -1,0 +1,31 @@
+# Development environment values
+replicaCount: 1
+
+image:
+  tag: "dev"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: chatbot-dev.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: chatbot-dev-tls
+      hosts:
+        - chatbot-dev.example.com
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 64Mi
+  requests:
+    cpu: 25m
+    memory: 32Mi
+
+autoscaling:
+  enabled: false
+
+ollama:
+  url: "http://ollama-service.default.svc.cluster.local:11434"
