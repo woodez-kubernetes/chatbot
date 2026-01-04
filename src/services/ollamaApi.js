@@ -1,8 +1,8 @@
-const OLLAMA_BASE_URL = 'http://llm.apexkube.xyz';
+const OLLAMA_BASE_URL = '/api/ollama';
 const MODEL = 'llama3.2:1b';
 
 export async function sendMessage(prompt) {
-  const response = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
+  const response = await fetch(`${OLLAMA_BASE_URL}/generate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
