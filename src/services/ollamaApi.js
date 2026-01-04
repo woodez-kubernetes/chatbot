@@ -1,4 +1,4 @@
-const OLLAMA_BASE_URL = 'http://localhost:11434';
+const OLLAMA_BASE_URL = 'http://llm.apexkube.xyz';
 const MODEL = 'llama3.2:1b';
 
 export async function sendMessage(prompt) {
