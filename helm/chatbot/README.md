@@ -2,7 +2,7 @@
 
 Helm chart for deploying the Woodez Smart Bot chatbot application to Kubernetes.
 
-## Prerequisites
+## Prerequisites hjhjhj
 
 - Kubernetes 1.19+
 - Helm 3.0+
