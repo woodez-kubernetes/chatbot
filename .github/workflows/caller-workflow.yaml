@@ -18,11 +18,17 @@ jobs:
       packages: write
     secrets: inherit
 
-  # 2. Second reusable workflow, runs ONLY after 'build-code' succeeds
-  ##run-tests:
-  ##  needs: build-code
-  ##  uses: ./.github/workflows/reusable-test.yml
-  ##  secrets: inherit
+  # 2. deploy app to k8s using argocd
+  deploy-code:
+    needs: build-code
+    uses: ./.github/workflows/deploy.yaml
+    permissions:
+      contents: write
+      packages: write
+    secrets: inherit
+
+
+
 
   # 3. Third reusable workflow, runs ONLY after 'run-tests' succeeds
   ##deploy-app:
