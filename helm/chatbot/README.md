@@ -10,7 +10,7 @@ Helm chart for deploying the Woodez Smart Bot chatbot application to Kubernetes.
 - cert-manager (for TLS certificates)
 - Ollama service running in the cluster
 
-## Installation
+## Installation checking
 
 ### Install with default values
 
