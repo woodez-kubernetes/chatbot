@@ -4,8 +4,11 @@
  * Base URL: http://stockapi.apexkube.xyz/api
  */
 
-const STOCK_API_BASE = 'http://stockapi.apexkube.xyz/api';
+// Use environment variables for Kubernetes deployment
+const STOCK_API_BASE = import.meta.env.VITE_STOCK_API_URL || 'http://stockapi.apexkube.xyz/api';
 const DEFAULT_TIMEOUT = 10000; // 10 seconds
+
+console.log('🔧 Stock API Config:', { url: STOCK_API_BASE });
 
 /**
  * Helper function to make API requests with timeout
@@ -18,7 +21,10 @@ async function makeApiRequest(endpoint, data) {
   const timeoutId = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT);
 
   try {
-    const response = await fetch(`${STOCK_API_BASE}${endpoint}`, {
+    const url = `${STOCK_API_BASE}${endpoint}`;
+    console.log('📡 Calling Stock API:', url, data);
+
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,19 +37,24 @@ async function makeApiRequest(endpoint, data) {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+      console.error('❌ Stock API error:', response.status, errorData);
       throw new Error(
         errorData.error || `API error: ${response.status} ${response.statusText}`
       );
     }
 
-    return await response.json();
+    const result = await response.json();
+    console.log('✅ Stock API response received');
+    return result;
   } catch (error) {
     clearTimeout(timeoutId);
 
     if (error.name === 'AbortError') {
+      console.error('⏱️ Stock API timeout');
       throw new Error('Request timeout - please try again');
     }
 
+    console.error('❌ Stock API request failed:', error);
     throw error;
   }
 }
